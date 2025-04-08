@@ -1,0 +1,29 @@
+.title {
+    color: transparent;
+    display: block;
+    -webkit-text-stroke: 2px;
+    font-size: 100px;
+    font-family: 'SFPro';
+    -webkit-text-stroke-color: rgb(40, 42, 48);
+    font-weight: 700;
+    line-height: 100%;
+}
+
+
+
+@media (max-width:1200px) {}
+
+@media (max-width:991px) {
+
+    .about__title span {
+        font-size: 60px;
+    }
+}
+
+@media (max-width:578px) {
+
+    .about__title span {
+        font-size: 40px;
+        letter-spacing: 2px;
+    }
+}

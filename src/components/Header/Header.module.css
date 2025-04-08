@@ -1,0 +1,30 @@
+.header {}
+
+.header__logo {
+    color: rgb(40, 42, 48);
+    font-family: "SFPro";
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 120%;
+    letter-spacing: 1px;
+    text-align: left;
+    text-decoration: none;
+    transition: all .3s;
+}
+
+.header__logo:hover {
+    color: rgb(247, 81, 92);
+}
+
+.header__wrapper {
+    padding-top: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media screen and (max-width:768px) {
+    .header__wrapper {
+        padding-top: 30px;
+    }
+}

@@ -1,0 +1,77 @@
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+}
+
+.nav__mobile {
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    transition: all .3s;
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    gap: 30px;
+    place-items: center;
+    background: white;
+    z-index: 10;
+}
+
+.nav__mobile.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.nav__burger {
+    cursor: pointer;
+    display: grid;
+    gap: 5px;
+    border: none;
+    outline: none;
+    order: 3;
+    z-index: 5;
+    background: transparent;
+    transition: all .2s;
+    z-index: 11;
+}
+
+
+.nav__burger span {
+    display: block;
+    transition: all .2s;
+    width: 30px;
+    background: rgb(247, 81, 92);
+    height: 3px;
+}
+
+.nav__burger.active span {}
+
+.nav__burger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(11px);
+}
+
+.nav__burger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav__burger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(12px);
+}
+
+@media screen and (max-width:1200px) {
+    .nav {
+        gap: 75px;
+    }
+}
+
+@media screen and (max-width:991px) {
+    .nav {
+        gap: 50px;
+    }
+}

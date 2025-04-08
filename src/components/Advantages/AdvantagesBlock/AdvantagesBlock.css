@@ -1,0 +1,55 @@
+.left {
+    position: absolute;
+    top: 30%;
+    left: 100px;
+}
+
+.top-right {
+    position: absolute;
+    top: 10%;
+    right: 100px;
+}
+
+.bottom-right {
+    position: absolute;
+    bottom: 10%;
+    right: 300px;
+}
+
+@media (max-width:1200px) {
+
+    .left {
+        top: 40%;
+        left: 10%;
+    }
+
+    .top-right {
+        top: 10%;
+        right: 10%;
+    }
+
+    .bottom-right {
+        right: 10%;
+    }
+}
+
+@media (max-width:991px) {
+
+    .left {
+        position: relative;
+        top: unset;
+        left: unset;
+    }
+
+    .top-right {
+        position: relative;
+        top: unset;
+        right: unset;
+    }
+
+    .bottom-right {
+        position: relative;
+        bottom: unset;
+        right: unset;
+    }
+}
