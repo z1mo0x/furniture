@@ -49,16 +49,11 @@
 
     .advantages__block {
         padding-left: 50px;
-    }
-
-    .advantages__block:nth-child(2) {
-        transform: translateY(-50px);
-        z-index: 1;
-    }
-
-    .advantages__block:nth-child(3) {
         transform: translateY(-100px);
-        z-index: 2;
+    }
+
+    .advantages__block.active {
+        transform: translateY(0px);
     }
 
     .advantages__number {

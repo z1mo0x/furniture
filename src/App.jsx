@@ -15,26 +15,26 @@ function App() {
     linkText: 'Discover',
   }
 
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
 
-  setTimeout(() => {
+  document.addEventListener('DOMContentLoaded', () => {
     setLoading(false)
-  }, 2000)
+  })
 
   return (
     <>
       {
-        loading === false
+        loading
           ?
+          <Loader />
+          :
           <>
             <Header />
             <Hero title={banner.title} subtitle={banner.subtitle} link={banner.link} linkText={banner.linkText} image={banner.image} />
             <About />
             <Advantages />
           </>
-          :
-          <Loader />
 
       }
 

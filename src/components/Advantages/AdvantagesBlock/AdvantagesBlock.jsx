@@ -1,7 +1,12 @@
 import styles from './AdvantagesBlock.module.css'
 import './AdvantagesBlock.css'
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
+import axios from 'axios';
 
+
+const response = axios.get('https://free-e-store-api.onrender.com/api/v1/products');
+
+console.log(response);
 
 export default function AdvantagesBlock({ title, descr, position }) {
 

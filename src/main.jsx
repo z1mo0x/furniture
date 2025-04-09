@@ -2,6 +2,9 @@ import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App'
 import AboutPage from './assets/pages/AboutPage'
+import Loader from './assets/pages/Loader'
+
+
 
 const router = createBrowserRouter([
   {
@@ -10,7 +13,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/about',
-    element: <AboutPage />
+    element: <AboutPage />,
   }
 
 ])
