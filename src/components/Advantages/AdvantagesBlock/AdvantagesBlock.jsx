@@ -13,7 +13,6 @@ export default function AdvantagesBlock({ title, descr, position }) {
         })
     });
 
-    observer()
 
     console.log(advantages);
 
