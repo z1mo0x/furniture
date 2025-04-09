@@ -24,6 +24,10 @@ const list = [
     },
 ]
 
+
+
+
+
 export default function Advantages() {
 
     return (
