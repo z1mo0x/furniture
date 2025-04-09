@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './Advantages.module.css'
 import Title from '../Title/Title'
 import advantagesBg from '../../img/advantages-bg.png'
@@ -23,16 +23,19 @@ const list = [
         position: 'bottom-right'
     },
 ]
-
 const advantages = document.querySelectorAll(`${styles.advantages__block}`)
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.classList.add('active')
-        }
-    })
-});
+useEffect(() => {
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.classList.add('active')
+            }
+        })
+    });
+
+}, [])
 
 export default function Advantages() {
 
