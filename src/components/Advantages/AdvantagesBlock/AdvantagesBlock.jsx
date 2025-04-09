@@ -6,9 +6,6 @@ export default function AdvantagesBlock({ title, descr, position }) {
 
 
 
-    console.log(advantages);
-
-
     return (
         <>
             <div className={`${styles.advantages__block} ${position}`}>
