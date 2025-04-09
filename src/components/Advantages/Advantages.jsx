@@ -35,6 +35,8 @@ useEffect(() => {
         })
     });
 
+    observer.observe(advantages)
+
 }, [])
 
 export default function Advantages() {
