@@ -3,7 +3,21 @@ import './AdvantagesBlock.css'
 
 export default function AdvantagesBlock({ title, descr, position }) {
 
-    const observer = 0;
+    const advantages = document.querySelectorAll(styles.advantages__block)
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((el) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.classList.add('active')
+                }
+            })
+        })
+    });
+
+    observer()
+
+    console.log(advantages);
 
 
     return (
