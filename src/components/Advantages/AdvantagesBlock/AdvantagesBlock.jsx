@@ -16,19 +16,12 @@ export default function AdvantagesBlock({ title, descr, position }) {
         });
     });
 
-
-    useEffect(() => {
-        console.log(advantagesRef.current)
-    }, [])
-
     const addToRef = (el) => {
         if (el && !advantagesRef.current.includes(el)) {
             advantagesRef.current.push(el)
             observer.observe(el)
         }
     }
-
-
 
     return (
         <>
