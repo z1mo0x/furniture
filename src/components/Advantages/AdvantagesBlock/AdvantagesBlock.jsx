@@ -6,12 +6,10 @@ export default function AdvantagesBlock({ title, descr, position }) {
     const advantages = document.querySelectorAll(`${styles.advantages__block}`)
 
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach((el) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.classList.add('active')
-                }
-            })
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.classList.add('active')
+            }
         })
     });
 
