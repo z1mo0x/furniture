@@ -24,7 +24,23 @@ const list = [
     },
 ]
 
+
 export default function Advantages() {
+
+    const advantages = document.querySelectorAll(`${styles.advantages__block}`)
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.classList.add('active')
+            }
+        })
+    });
+
+
+    console.log(advantages);
+
+
     return (
         <>
             <div className={styles.advantages}>
