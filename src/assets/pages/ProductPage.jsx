@@ -5,6 +5,7 @@ import axios from 'axios'
 import ProductDetail from '../../components/ProductDetail/ProductDetail'
 import Layout from '../../components/Layout/Layout'
 import Loader from './Loader'
+import SameProducts from '../../components/SameProducts/SameProducts'
 
 export default function ProductPage() {
 
@@ -20,28 +21,29 @@ export default function ProductPage() {
         setProductDetail(responce.data)
         setDetailLoading(false)
     }
-
     useEffect(() => {
         getProducts()
     }, [])
 
 
     return (
-        <Layout>
-            {
-                detailLoading
-                    ?
-                    <Loader />
-                    :
-                    <ProductDetail
-                        key={productDetail.id}
-                        image={productDetail.image}
-                        title={productDetail.title}
-                        price={productDetail.price}
-                        rating={productDetail.rating}
-                        description={productDetail.description}
-                    />
-            }
-        </Layout>
+
+        detailLoading
+            ?
+            <Loader />
+            :
+            <Layout>
+                <ProductDetail
+                    key={productDetail.id}
+                    image={productDetail.image}
+                    title={productDetail.title}
+                    price={productDetail.price}
+                    rating={productDetail.rating}
+                    description={productDetail.description}
+                />
+                <SameProducts />
+
+            </Layout>
+
     )
 }

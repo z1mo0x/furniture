@@ -66,16 +66,14 @@ export default function Products() {
                             {
                                 productsLoading
                                     ?
-                                    'LOADING...'
-                                    :
+                                    'loading...' :
                                     <ProductsSwiper swiperRef={swiperRef}>
                                         {products.map((product, index) => {
                                             return (
                                                 <>
-                                                    <SwiperSlide key={index}>
+                                                    <SwiperSlide key={product.id}>
                                                         <ProductItem
                                                             productJSON={product}
-                                                            key={product.id}
                                                             image={product.image}
                                                             title={product.title}
                                                             price={product.price}
@@ -86,7 +84,6 @@ export default function Products() {
                                         })}
                                     </ProductsSwiper>
                             }
-
                         </div>
                     </div>
                 </div>

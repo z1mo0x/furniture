@@ -1,11 +1,10 @@
+import { useEffect, useState } from 'react'
 import './App.css'
-import { use, useEffect, useState } from 'react'
 import Loader from './assets/pages/Loader'
 import About from './components/About/About'
 import Advantages from './components/Advantages/Advantages'
 import Header from './components/Header/Header'
 import Hero from './components/Hero/Hero'
-import axios from 'axios'
 import Products from './components/Products/Products'
 
 function App() {
@@ -17,14 +16,11 @@ function App() {
     linkText: 'Discover',
   }
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
-
-  document.addEventListener('DOMContentLoaded', () => {
+  useEffect(() => {
     setLoading(false)
-  })
-
-
+  }, [])
 
 
   return (
