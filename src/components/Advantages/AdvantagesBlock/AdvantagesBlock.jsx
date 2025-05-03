@@ -6,7 +6,10 @@ import axios from 'axios';
 
 const response = axios.get('https://free-e-store-api.onrender.com/api/v1/products');
 
-console.log(response);
+response.then(() => {
+
+}
+)
 
 export default function AdvantagesBlock({ title, descr, position }) {
 
@@ -36,7 +39,7 @@ export default function AdvantagesBlock({ title, descr, position }) {
                     <div className={styles.advantages__title}>{title}</div>
                     <div className={styles.advantages__descr}>{descr}</div>
                 </div>
-            </div >
+            </div>
         </>
     )
 }

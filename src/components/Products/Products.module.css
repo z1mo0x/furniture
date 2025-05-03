@@ -1,0 +1,51 @@
+.products {
+    margin-top: 150px;
+}
+
+.products__title {
+    color: rgb(40, 42, 48);
+    font-family: 'SFPro';
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 49px;
+}
+
+.products__header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.products__arrows {
+    display: flex;
+    align-items: flex-end;
+    gap: 50px;
+}
+
+.products__arrow {
+    border: 2px solid rgb(40, 42, 48);
+    border-radius: 10px;
+    height: 50px;
+    display: grid;
+    place-items: center;
+    width: 50px;
+    transition: all .3s;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.products__arrow img {
+    transition: all .3s;
+}
+
+.products__arrow:hover {
+    background: rgb(40, 42, 48);
+}
+
+.products__arrow:hover img {
+    filter: invert(1) brightness(2);
+}
+
+.products__slider {
+    margin-top: 70px;
+}

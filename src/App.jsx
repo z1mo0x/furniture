@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react'
 import './App.css'
+import { use, useEffect, useState } from 'react'
 import Loader from './assets/pages/Loader'
 import About from './components/About/About'
 import Advantages from './components/Advantages/Advantages'
 import Header from './components/Header/Header'
 import Hero from './components/Hero/Hero'
+import axios from 'axios'
+import Products from './components/Products/Products'
 
 function App() {
 
@@ -22,6 +24,9 @@ function App() {
     setLoading(false)
   })
 
+
+
+
   return (
     <>
       {
@@ -34,6 +39,7 @@ function App() {
             <Hero title={banner.title} subtitle={banner.subtitle} link={banner.link} linkText={banner.linkText} image={banner.image} />
             <About />
             <Advantages />
+            <Products />
           </>
 
       }
