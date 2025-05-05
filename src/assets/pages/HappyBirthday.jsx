@@ -8,7 +8,7 @@ export default function HappyBirthday() {
             id: 'fireworks-canvas',
             hue: 120,
             particleCount: 100,
-            delay: 20,
+            delay: 0,
             minDelay: 20,
             maxDelay: 20,
             boundaries: {
