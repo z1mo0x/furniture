@@ -32,7 +32,7 @@ function App() {
           :
           <>
             <Header />
-            <Hero title={banner.title} subtitle={banner.subtitle} link={banner.link} linkText={banner.linkText} image={banner.image} />
+            <Hero title={banner.title} subtitle={banner.subtitle} link={'/happybirthday'} linkText={banner.linkText} image={banner.image} />
             <About />
             <Advantages />
             <Products />

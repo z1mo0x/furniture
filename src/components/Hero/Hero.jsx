@@ -32,7 +32,7 @@ export default function Hero({ title, subtitle, link, linkText }) {
                                 {title}
                             </div>
                             <div className={styles.hero__actions}>
-                                <ButtonRed to={link}>{linkText}</ButtonRed>
+                                <ButtonRed to={'/happybirthday/'}>{linkText}</ButtonRed>
                                 <ButtonVideo openVideo={openVideo}></ButtonVideo>
                             </div>
                             <PopupVideo isVideoOpen={isVideoOpen} openVideo={openVideo} videoPopup={video} />

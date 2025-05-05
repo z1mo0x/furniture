@@ -24,7 +24,7 @@ const router = createBrowserRouter([
     element: <ProductPage />
   },
   {
-    path: '/happybirthday/',
+    path: '/happybirthday',
     element: <HappyBirthday />
   },
 
