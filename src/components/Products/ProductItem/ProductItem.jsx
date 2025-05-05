@@ -1,5 +1,4 @@
 import React from 'react'
-import productImage from '../../../img/product-1.png'
 import styles from './ProductItem.module.css'
 import { NavLink } from 'react-router'
 
