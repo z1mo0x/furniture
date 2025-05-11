@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router';
+import { Router, useParams } from 'react-router';
 import ProductItem from '../Products/ProductItem/ProductItem';
 import ProductsSwiper from '../Products/ProductsSwiper/ProductsSwiper';
 import { SwiperSlide } from 'swiper/react';
@@ -11,23 +11,23 @@ export default function SameProducts() {
 
     const [same, setSame] = useState([]);
 
-    const { id } = useParams()
+    const { productId } = useParams()
 
     async function getProducts() {
-        const responce = await axios.get(`https://fakestoreapi.com/products/`)
-        let thisElementCategory = responce.data[id].category;
+        const response = await axios.get(`https://fakestoreapi.com/products/`);
+        const thisElementCategory = response.data[productId - 1].category;
 
-        responce.data.filter((el) => {
-            if (el.category === thisElementCategory) {
-                setSame(prevSame => [...prevSame, el])
-            }
-        })
+        // Фильтруем массив, чтобы исключить текущий продукт
+        const filteredProducts = response.data.filter((el) => {
+            return el.category === thisElementCategory && el !== response.data[productId - 1]; // Используем el.id для сравнения
+        });
 
-        console.log(thisElementCategory);
+        setSame(filteredProducts);
     }
+
     useEffect(() => {
-        getProducts()
-    }, [])
+        getProducts();
+    }, [productId]);
 
     return (
         <>

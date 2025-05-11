@@ -70,16 +70,14 @@ export default function Products() {
                                     <ProductsSwiper swiperRef={swiperRef}>
                                         {products.map((product, index) => {
                                             return (
-                                                <>
-                                                    <SwiperSlide key={product.id}>
-                                                        <ProductItem
-                                                            productJSON={product}
-                                                            image={product.image}
-                                                            title={product.title}
-                                                            price={product.price}
-                                                            link={product.id} />
-                                                    </SwiperSlide >
-                                                </>
+                                                <SwiperSlide key={product.id}>
+                                                    <ProductItem
+                                                        productJSON={product}
+                                                        image={product.image}
+                                                        title={product.title}
+                                                        price={product.price}
+                                                        link={product.id} />
+                                                </SwiperSlide >
                                             )
                                         })}
                                     </ProductsSwiper>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router'
 import ProductItem from '../../components/Products/ProductItem/ProductItem'
 import axios from 'axios'
@@ -7,23 +7,38 @@ import Layout from '../../components/Layout/Layout'
 import Loader from './Loader'
 import SameProducts from '../../components/SameProducts/SameProducts'
 
+import gsap from 'gsap'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+
+gsap.registerPlugin(ScrollToPlugin);
+
 export default function ProductPage() {
 
-    const { id } = useParams()
 
+    const { productId } = useParams()
+
+
+    const containerRef = useRef(null);
     const [productDetail, setProductDetail] = useState([])
 
     const [detailLoading, setDetailLoading] = useState(true)
 
 
+
     async function getProducts() {
-        const responce = await axios.get(`https://fakestoreapi.com/products/${id}`)
+        const responce = await axios.get(`https://fakestoreapi.com/products/${productId}`)
         setProductDetail(responce.data)
         setDetailLoading(false)
+
+        gsap.to(window, {
+            duration: .5,
+            scrollTo: 0,
+        });
     }
     useEffect(() => {
         getProducts()
-    }, [])
+
+    }, [productId])
 
 
     return (
@@ -33,8 +48,7 @@ export default function ProductPage() {
             <Loader />
             :
             <Layout>
-                <ProductDetail
-                    key={productDetail.id}
+                <ProductDetail ref={containerRef}
                     image={productDetail.image}
                     title={productDetail.title}
                     price={productDetail.price}
