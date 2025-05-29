@@ -5,6 +5,7 @@ import AboutPage from './assets/pages/AboutPage'
 import Loader from './assets/pages/Loader'
 import ProductPage from './assets/pages/ProductPage'
 import { useState } from 'react'
+import Collection from './assets/pages/Collection'
 
 
 
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: '/product/:productId',
     element: <ProductPage />,
+  },
+  {
+    path: '/collection',
+    element: <Collection />,
   },
 ])
 
