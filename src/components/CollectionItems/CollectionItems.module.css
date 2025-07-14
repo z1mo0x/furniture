@@ -7,3 +7,18 @@
     gap: 30px;
     grid-template-columns: repeat(4, 1fr);
 }
+
+
+.collection__load {
+    animation: loadingKey 1s infinite;
+}
+
+@keyframes loadingKey {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: .5;
+    }
+}

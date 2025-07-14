@@ -54,6 +54,7 @@ export default function ProductPage() {
                     price={productDetail.price}
                     rating={productDetail.rating}
                     description={productDetail.description}
+                    product={productDetail}
                 />
                 <SameProducts />
 

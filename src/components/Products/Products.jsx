@@ -8,29 +8,17 @@ import ProductItem from './ProductItem/ProductItem';
 import next from '../../img/next.png'
 import prev from '../../img/prev.png'
 import Loader from '../../assets/pages/Loader';
+import { fetchProducts } from '../../store'
+import { useSelector, useDispatch } from 'react-redux'
 
 export default function Products() {
 
-    const [products, setProducts] = useState([]);
-    const [productsLoading, setProductsLoading] = useState(null)
 
 
-    useEffect(() => {
-        async function getProducts() {
-            setProductsLoading(true)
-            try {
-                const responce = await axios.get('https://fakestoreapi.com/products')
-                setProducts(responce.data)
-            }
-            catch { }
-            finally {
-                setProductsLoading(false)
-            }
-        }
-
-        getProducts()
-    }, [])
-
+    const dispatch = useDispatch()
+    const products = useSelector(state => state.products.items)
+    const status = useSelector(state => state.products.status)
+    const error = useSelector(state => state.products.error)
 
     const swiperRef = useRef(null);
 
@@ -41,6 +29,12 @@ export default function Products() {
     const handlePrev = () => {
         swiperRef.current.swiper.slidePrev();
     };
+
+    useEffect(() => {
+        if (status === 'idle') {
+            dispatch(fetchProducts())  // запускаем загрузку товаров
+        }
+    }, [status, dispatch])
 
 
     return (
@@ -64,7 +58,7 @@ export default function Products() {
                         </div>
                         <div className={styles.products__slider}>
                             {
-                                productsLoading
+                                status === 'loading'
                                     ?
                                     'loading...' :
                                     <ProductsSwiper swiperRef={swiperRef}>

@@ -1,6 +1,9 @@
 import styles from './ProductDetail.module.css'
+import { supabase } from '../../supabase'
+import { useEffect, useState } from 'react';
+import { data } from 'react-router';
 
-export default function ProductDetail({ image, title, price, description, rating }) {
+export default function ProductDetail({ product, image, title, price, description, rating }) {
 
     const FullStar = () => (
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gold" className="bi bi-star-fill" viewBox="0 0 16 16">
@@ -20,11 +23,87 @@ export default function ProductDetail({ image, title, price, description, rating
         </svg>
     );
 
+
     const starCount = rating ? rating.rate : 0; // Получаем рейтинг
     const fullStars = Math.floor(starCount); // Полные звезды
     const hasHalfStar = starCount % 1 !== 0;
+    const [basketData, setBasketData] = useState([])
+
+    useEffect(() => {
+        getData();
+    }, []);
 
 
+    async function getData() {
+        let { data, error } = await supabase
+            .from('cart')
+            .select('*')
+
+        if (error) {
+            console.error('Ошибка получения данных:', error.message);
+        } else {
+            setBasketData(data || []);
+        }
+    }
+
+    async function addBasket() {
+        const productId = product.id;
+
+        // Проверяем, есть ли товар уже в корзине
+        const { data: existingItems, error: selectError } = await supabase
+            .from('cart')
+            .select('*')
+            .eq('id', productId);
+
+        if (selectError) {
+            console.error('Ошибка при проверке товара в корзине:', selectError.message);
+            return;
+        }
+
+        if (existingItems.length > 0) {
+            // Товар уже есть — увеличиваем количество
+            const existingItem = existingItems[0];
+            const updatedQuantity = existingItem.count + 1;
+
+            const { error: updateError } = await supabase
+                .from('cart')
+                .update({ count: updatedQuantity })
+                .eq('id', productId);
+
+            if (updateError) {
+                console.error('Ошибка при обновлении количества:', updateError.message);
+            } else {
+                console.log('Количество увеличено до', updatedQuantity);
+            }
+        } else {
+            // Товара нет — вставляем новый с quantity = 1
+            const { data: insertData, error: insertError } = await supabase
+                .from('cart')
+                .insert([
+                    {
+                        id: product.id,
+                        title: product.title,
+                        description: product.description,
+                        image: product.image,
+                        price: product.price,
+                        rating: product.rating.rate,
+                        rating_count: product.rating.count,
+                        count: '1'
+                    },
+                ]);
+
+            if (insertError) {
+                console.error('Ошибка добавления товара:', insertError.message);
+            } else {
+                console.log('Товар добавлен в корзину:', insertData);
+            }
+        }
+
+        // Обновляем локальные данные корзины
+        getData();
+    }
+
+    console.log(basketData);
 
     return (
         <div className={styles.detail}>
@@ -40,7 +119,9 @@ export default function ProductDetail({ image, title, price, description, rating
                         <div className={styles.detail__descr}>{description}</div>
                     </div>
                     <div className={styles.detail__block}>
-                        <div className={styles.detail__price}>{price} $</div>
+                        <div onClick={() => { addBasket(product) }} className={styles.detail__price}>
+                            {price} $
+                        </div>
                         <div className={styles.detail__rating}>
                             <div className={styles.detail__stars}>
                                 {[...Array(5)].map((_, index) => {

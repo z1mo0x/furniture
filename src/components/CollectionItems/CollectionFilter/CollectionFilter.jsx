@@ -3,7 +3,7 @@ import styles from './CollectionFilter.module.css'
 import CollectionSearch from "../CollectionSearch/CollectionSearch";
 
 
-export default function CollectionFilter({ collection, setCollection, displayCollection }) {
+export default function CollectionFilter({ collection, setDisplayCollection, setCollection, displayCollection }) {
 
 	const [categories, setCategories] = useState([]);
 	const [filteredCollection, setFilteredCollection] = useState([])
@@ -25,7 +25,6 @@ export default function CollectionFilter({ collection, setCollection, displayCol
 	}, [collection])
 
 	function openFilter() {
-		console.log(displayCollection);;
 		filterItems.classList.toggle('opened');
 		if (filterItems.classList.contains('opened')) {
 			filterDrop.style.height = filterDrop.scrollHeight + 'px';
@@ -45,7 +44,7 @@ export default function CollectionFilter({ collection, setCollection, displayCol
 	return (
 		<div className={styles.filter}>
 			<div className={styles.filter__wrapper}>
-				<CollectionSearch displayCollection={displayCollection} collection={collection} setCollection={setCollection} />
+				<CollectionSearch filteredCollection={filteredCollection} setDisplayCollection={setDisplayCollection} displayCollection={displayCollection} collection={collection} setCollection={setCollection} />
 				<div className={`${styles.filter__items} ${styles.filter__drop}`}>
 					<div onClick={openFilter} className={`${styles.filter__item} ${styles.filter__first}`}>
 						{selectedCategory || 'Выберите категорию'}

@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./CollectionItems.module.css";
 import CollectionItem from "./CollectionItem/CollectionItem";
+import loadingProduct from '../../img/loadingProduct.gif'
 
 export default function CollectionItems({ collection, collectionLoading }) {
 
@@ -10,6 +11,7 @@ export default function CollectionItems({ collection, collectionLoading }) {
 			<div className={styles.collection__wrapper}>
 				{collection.map((el) => (
 					<CollectionItem
+
 						key={el.id}
 						link={el.id}
 						title={el.title}
@@ -18,6 +20,7 @@ export default function CollectionItems({ collection, collectionLoading }) {
 						image={el.image}
 					/>
 				))}
+
 			</div>
 		</div>
 	);

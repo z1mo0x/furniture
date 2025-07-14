@@ -3,6 +3,7 @@ import CollectionItems from "../../components/CollectionItems/CollectionItems";
 import Layout from "../../components/Layout/Layout";
 import axios from "axios";
 import CollectionFilter from '../../components/CollectionItems/CollectionFilter/CollectionFilter'
+import CollectionItem from "../../components/CollectionItems/CollectionItem/CollectionItem";
 
 export default function Collection() {
 
@@ -25,11 +26,19 @@ export default function Collection() {
 	return (
 		<Layout>
 			<div className="container">
-				<CollectionFilter displayCollection={displayCollection} collection={collection} setCollection={setCollection} />
+				<CollectionFilter setDisplayCollection={setDisplayCollection} displayCollection={displayCollection} collection={collection} setCollection={setCollection} />
 				{collectionLoading
-					? 'loading...'
+					?
+					<CollectionItem
+						key={0}
+						link={''}
+						title={''}
+						rating={''}
+						price={''}
+						image={''}
+					/>
 					:
-					<CollectionItems collection={collection} loading={collectionLoading} />
+					<CollectionItems displayCollection={displayCollection} setDisplayCollection={setDisplayCollection} collection={collection} loading={collectionLoading} />
 				}
 			</div>
 		</Layout>
