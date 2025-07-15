@@ -85,3 +85,24 @@
     box-shadow: 0 20px 12px -16px rgba(0, 30, 85, .1), 0 8px 24px 18px rgba(0, 30, 85, .05);
     border-radius: 20px;
 }
+
+@media (max-width:1599px) {
+    .detail__wrapper {
+        grid-template-columns: .5fr 1fr .7fr;
+        gap: 30px;
+    }
+
+    .detail__title {
+        font-size: 30px;
+    }
+
+    .detail__block {
+        padding-bottom: 30px;
+    }
+
+    .detail__sticky {
+        height: max-content;
+        position: sticky;
+        top: 20px;
+    }
+}

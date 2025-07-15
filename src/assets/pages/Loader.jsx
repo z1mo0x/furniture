@@ -13,7 +13,7 @@ const Loader = () => {
             <div className="control maximize" />
           </div>
         </div>
-        <div className="text">Loading...</div>
+        <div className="text">Загрузка...</div>
       </div>
     </StyledWrapper>
   );
@@ -38,7 +38,7 @@ const StyledWrapper = styled.div`
     }
     45%,
     55% {
-      width: 6.2em;
+      width: 6.4em;
     } /* adjust width based on content */
     90%,
     100% {

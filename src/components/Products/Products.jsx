@@ -2,18 +2,14 @@ import React, { useEffect, useRef, useState } from 'react'
 import styles from './Products.module.css'
 import Title from '../Title/Title'
 import { SwiperSlide } from 'swiper/react';
-import axios from 'axios'
 import ProductsSwiper from './ProductsSwiper/ProductsSwiper'
 import ProductItem from './ProductItem/ProductItem';
 import next from '../../img/next.png'
 import prev from '../../img/prev.png'
-import Loader from '../../assets/pages/Loader';
 import { fetchProducts } from '../../store'
 import { useSelector, useDispatch } from 'react-redux'
 
 export default function Products() {
-
-
 
     const dispatch = useDispatch()
     const products = useSelector(state => state.products.items)
@@ -32,7 +28,7 @@ export default function Products() {
 
     useEffect(() => {
         if (status === 'idle') {
-            dispatch(fetchProducts())  // запускаем загрузку товаров
+            dispatch(fetchProducts())
         }
     }, [status, dispatch])
 

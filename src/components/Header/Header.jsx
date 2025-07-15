@@ -17,10 +17,6 @@ const links = [
         title: 'Collection',
         link: '/collection'
     },
-    {
-        title: 'Shop',
-        link: '/shop'
-    },
 ]
 
 export default function Header() {

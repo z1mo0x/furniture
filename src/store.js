@@ -1,7 +1,6 @@
 import { configureStore, createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
 
-// 1. Создаем асинхронную функцию для загрузки товаров
 export const fetchProducts = createAsyncThunk(
     'products/fetchProducts',
     async () => {

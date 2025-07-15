@@ -19,7 +19,8 @@ export default function SameProducts() {
 
         // Фильтруем массив, чтобы исключить текущий продукт
         const filteredProducts = response.data.filter((el) => {
-            return el.category === thisElementCategory && el !== response.data[productId - 1]; // Используем el.id для сравнения
+            return el.category === thisElementCategory && el !== response.data[productId - 1];
+            // Используем el.id для сравнения
         });
 
         setSame(filteredProducts);
@@ -40,7 +41,6 @@ export default function SameProducts() {
                                 same.map((item, index) => {
                                     return (
                                         <SwiperSlide key={index}>
-                                            {/* TODO починить ссылки */}
                                             <ProductItem
                                                 key={item.key}
                                                 title={item.title}
@@ -48,7 +48,6 @@ export default function SameProducts() {
                                                 price={item.price}
                                                 link={item.id}
                                             />
-                                            {/* TODO починить ссылки */}
                                         </SwiperSlide>
                                     )
                                 })

@@ -4,8 +4,11 @@ import Layout from "../../components/Layout/Layout";
 import axios from "axios";
 import CollectionFilter from '../../components/CollectionItems/CollectionFilter/CollectionFilter'
 import CollectionItem from "../../components/CollectionItems/CollectionItem/CollectionItem";
+import Loader from "./Loader";
 
 export default function Collection() {
+
+
 
 	const [collection, setCollection] = useState([]);
 	const [displayCollection, setDisplayCollection] = useState([])
@@ -29,14 +32,7 @@ export default function Collection() {
 				<CollectionFilter setDisplayCollection={setDisplayCollection} displayCollection={displayCollection} collection={collection} setCollection={setCollection} />
 				{collectionLoading
 					?
-					<CollectionItem
-						key={0}
-						link={''}
-						title={''}
-						rating={''}
-						price={''}
-						image={''}
-					/>
+					<Loader />
 					:
 					<CollectionItems displayCollection={displayCollection} setDisplayCollection={setDisplayCollection} collection={collection} loading={collectionLoading} />
 				}

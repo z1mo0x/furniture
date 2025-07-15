@@ -57,9 +57,14 @@
     cursor: pointer;
 }
 
-
-
 .filter__first::after {
     content: '⌵';
     margin-top: -1px;
+}
+
+@media (max-width:577px) {
+    .filter__wrapper {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }
