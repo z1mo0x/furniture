@@ -158,16 +158,6 @@
 }
 
 
-/* с др */
-.body {
-    padding: 0;
-    margin: 0;
-    background: #020202;
-    cursor: crosshair;
-    height: 100vh;
-    width: 100vw;
-    position: relative;
-}
 
 .fireworks {
     background: transparent;
@@ -202,6 +192,7 @@ html {
 body {
     margin: 0;
     font-family: 'SFPro';
+    padding-bottom: 100px;
 }
 
 main {
