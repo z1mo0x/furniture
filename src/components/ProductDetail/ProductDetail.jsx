@@ -75,6 +75,7 @@ export default function ProductDetail({ product, image, title, price, descriptio
                 console.error('Ошибка добавления товара:', insertError.message);
             } else {
                 console.log('Товар добавлен в корзину:', insertData);
+                window.dispatchEvent(new Event('cartUpdated'));
             }
         }
 

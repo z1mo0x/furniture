@@ -5,12 +5,29 @@
 }
 
 .icons__item {
+    position: relative;
     cursor: pointer;
     transition: all .2s;
 }
 
 .icons__item:hover {
     transform: scale(1.1);
+}
+
+.icons__count {
+    position: absolute;
+    background: rgb(247, 81, 92);
+    width: 20px;
+    height: 20px;
+    font-size: 16px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    position: absolute;
+    top: -10px;
+    left: 10px;
 }
 
 @media screen and (max-width:991px) {
