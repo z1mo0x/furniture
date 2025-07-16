@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from './BasketItem.module.css'
 import { supabase } from '../../supabase'
 import { getStars } from '../../scripts/stars'
@@ -9,11 +9,12 @@ export default function BasketItem({ cart, calculateTotal, getDataCart, id, imag
 
     const [cartCount, setCartCount] = useState(0)
     const [loading, setLoading] = useState(false)
+    const [animation, setAnimation] = useState()
+    const itemRef = useRef(null)
     let noLoading = true;
 
     useEffect(() => {
         getData()
-
     }, [])
 
     async function getData() {
@@ -38,7 +39,6 @@ export default function BasketItem({ cart, calculateTotal, getDataCart, id, imag
     async function plusBasket() {
         setLoading(true)
         try {
-            // Увеличиваем количество на 1
             const { error } = await supabase
                 .from('cart')
                 .update({
@@ -64,7 +64,6 @@ export default function BasketItem({ cart, calculateTotal, getDataCart, id, imag
 
         setLoading(true)
         try {
-            // Уменьшаем количество на 1
             const { error } = await supabase
                 .from('cart')
                 .update({
@@ -86,25 +85,42 @@ export default function BasketItem({ cart, calculateTotal, getDataCart, id, imag
     }
 
     async function deleteCart() {
+        if (!itemRef.current) return;
+
+        // 1. Запускаем анимацию удаления
+        setAnimation(`${styles.basket__item_delete}`);
+
         try {
+            // 2. Ждем завершения КОНКРЕТНОЙ анимации
+            await new Promise((resolve) => {
+                const handler = (e) => {
+                    itemRef.current.removeEventListener('animationend', handler);
+                    resolve();
+                };
+
+                itemRef.current.addEventListener('animationend', handler);
+            });
+
+            // 3. Удаляем товар из БД
             const { error } = await supabase
                 .from('cart')
                 .delete()
-                .eq('id', id)
+                .eq('id', id);
 
-            if (error) throw error
+            if (error) throw error;
 
-            console.log('Товар удалён:', id)
+            // 4. Обновляем состояние
+            getDataCart(noLoading);
+            calculateTotal(cart);
+
         } catch (error) {
-            console.error('Ошибка при удалении товара:', error.message)
-        } finally {
-            getDataCart(noLoading)
-            calculateTotal(cart)
+            console.error('Ошибка удаления:', error);
+            setAnimation(''); // Сбрасываем анимацию при ошибке
         }
     }
 
     return (
-        <div className={styles.basket__item} >
+        <div ref={itemRef} className={`${styles.basket__item} ${animation} `} >
             <div className={styles.basket__image}>
                 <img src={image} alt={title} />
             </div>

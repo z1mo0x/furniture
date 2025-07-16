@@ -38,9 +38,11 @@
 
 .basket__count input {
     width: 30px;
+    transition: all .3s;
     border: none;
     text-align: center;
 }
+
 
 .basket__plus,
 .basket__minus {
@@ -68,6 +70,22 @@
     align-items: center;
     justify-content: center;
     font-weight: 700;
+}
+
+.basket__item_delete {
+    animation: translate .3s forwards;
+}
+
+@keyframes translate {
+    from {
+        transform: translateX(0px);
+    }
+
+    to {
+        transform: translateX(100px);
+        opacity: 0;
+
+    }
 }
 
 .basket__delete {
