@@ -107,7 +107,9 @@ export default function BasketItem({ cart, calculateTotal, getDataCart, id, imag
             if (error) throw error;
 
             getDataCart(noLoading);
+            window.dispatchEvent(new Event('cartUpdated'));
             calculateTotal(cart);
+
 
         } catch (error) {
             console.error('Ошибка удаления:', error);

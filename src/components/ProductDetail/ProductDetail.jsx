@@ -36,6 +36,7 @@ export default function ProductDetail({ product, image, title, price, descriptio
     }
 
     async function addBasket() {
+        setPriceLoading(true)
 
         const { data: existingItems, error: selectError } = await supabase
             .from('cart')
@@ -84,10 +85,9 @@ export default function ProductDetail({ product, image, title, price, descriptio
             } else {
                 console.log('Товар добавлен в корзину:', insertData);
                 window.dispatchEvent(new Event('cartUpdated'));
+                setPriceLoading(false)
             }
         }
-
-        // Обновляем локальные данные корзины
         getData();
     }
 
@@ -108,8 +108,9 @@ export default function ProductDetail({ product, image, title, price, descriptio
                     </div>
                     <div className={styles.detail__block}>
                         <div className={styles.detail__sticky}>
-                            <div
+                            <button
                                 onClick={() => { addBasket(product) }}
+                                disabled={priceLoading ? true : false}
                                 className={`${styles.detail__price} ${inCart ? `${styles.detail__count}` : ''}`}
                             >
                                 {
@@ -119,7 +120,7 @@ export default function ProductDetail({ product, image, title, price, descriptio
                                         :
                                         `${inCart ? `В корзине ${basketData[0].count}` : `${price} $`}`
                                 }
-                            </div>
+                            </button>
                             <div className={styles.detail__rating}>
                                 <div className={styles.detail__stars}>
                                     {getStars(rating.rate)}
