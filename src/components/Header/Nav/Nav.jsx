@@ -50,7 +50,7 @@ export default function Nav({ links }) {
                             <span></span>
                             <span></span>
                         </button>
-                        <nav className={`${styles.nav} ${styles.nav__mobile} ${isBurgerOpen ? styles.active : ''}`}>
+                        <nav key={0} className={`${styles.nav} ${styles.nav__mobile} ${isBurgerOpen ? styles.active : ''}`}>
                             {links.map((el, index) => {
                                 return (
                                     <>
@@ -61,7 +61,7 @@ export default function Nav({ links }) {
                         </nav >
                     </>
                     :
-                    <nav className={`${styles.nav}`}>
+                    <nav key={1} className={`${styles.nav}`}>
                         {links.map((el, index) => {
                             return <NavItem key={index} link={el.link} title={el.title} />
                         })}

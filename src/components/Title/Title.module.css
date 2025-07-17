@@ -15,12 +15,21 @@
 
 @media (max-width:991px) {
 
+    .title {
+        font-size: 60px;
+    }
+
     .about__title span {
         font-size: 60px;
     }
 }
 
 @media (max-width:578px) {
+
+    .title {
+        font-size: 40px;
+        letter-spacing: 2px;
+    }
 
     .about__title span {
         font-size: 40px;

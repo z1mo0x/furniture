@@ -87,11 +87,9 @@ export default function BasketItem({ cart, calculateTotal, getDataCart, id, imag
     async function deleteCart() {
         if (!itemRef.current) return;
 
-        // 1. Запускаем анимацию удаления
         setAnimation(`${styles.basket__item_delete}`);
 
         try {
-            // 2. Ждем завершения КОНКРЕТНОЙ анимации
             await new Promise((resolve) => {
                 const handler = (e) => {
                     itemRef.current.removeEventListener('animationend', handler);
@@ -101,7 +99,6 @@ export default function BasketItem({ cart, calculateTotal, getDataCart, id, imag
                 itemRef.current.addEventListener('animationend', handler);
             });
 
-            // 3. Удаляем товар из БД
             const { error } = await supabase
                 .from('cart')
                 .delete()
@@ -109,13 +106,12 @@ export default function BasketItem({ cart, calculateTotal, getDataCart, id, imag
 
             if (error) throw error;
 
-            // 4. Обновляем состояние
             getDataCart(noLoading);
             calculateTotal(cart);
 
         } catch (error) {
             console.error('Ошибка удаления:', error);
-            setAnimation(''); // Сбрасываем анимацию при ошибке
+            setAnimation('');
         }
     }
 
@@ -129,18 +125,16 @@ export default function BasketItem({ cart, calculateTotal, getDataCart, id, imag
                 <div className={styles.basket__rate}>
                     {getStars(rating)}
                 </div>
-                {rating} / 5
+                <p>
+                    {rating} / 5
+                </p>
             </div>
             <div className={styles.basket__price}>
                 {`${price} $`}
                 <br />
-                {
-                    cartCount > 1
-                        ?
-                        `Сумма: ${(price * cartCount).toFixed(2)} $`
-                        :
-                        ''
-                }
+                <div className={`${styles.basket__total} ${cartCount > 1 ? '' : `${styles.basket__nototal}`}`}>
+                    {` Сумма: ${(price * cartCount).toFixed(2)} $`}
+                </div>
             </div>
             <div className={styles.basket__count}>
                 <button
@@ -157,7 +151,7 @@ export default function BasketItem({ cart, calculateTotal, getDataCart, id, imag
             </div>
             <div className={styles.basket__actions}>
                 <ButtonRed onClick={deleteCart} classes={styles.basket__delete} disabled={loading}>
-                    Удалить
+                    x
                 </ButtonRed>
             </div>
         </div>

@@ -2,11 +2,14 @@ import styles from './ProductDetail.module.css'
 import { supabase } from '../../supabase'
 import { useEffect, useState } from 'react';
 import { getStars } from '../../scripts/stars';
+import { useParams, useSearchParams } from 'react-router';
 
 export default function ProductDetail({ product, image, title, price, description, rating }) {
 
-
+    const { productId } = useParams()
     const [basketData, setBasketData] = useState([])
+    const [inCart, setInCart] = useState(false)
+    const [priceLoading, setPriceLoading] = useState(false)
 
     useEffect(() => {
         getData();
@@ -14,21 +17,26 @@ export default function ProductDetail({ product, image, title, price, descriptio
 
 
     async function getData() {
+        setPriceLoading(true)
         let { data, error } = await supabase
             .from('cart')
             .select('*')
+            .eq('id', productId)
+
+        if (data.length > 0) {
+            setInCart(true)
+        }
 
         if (error) {
             console.error('Ошибка получения данных:', error.message);
         } else {
             setBasketData(data || []);
+            setPriceLoading(false)
         }
     }
 
     async function addBasket() {
-        const productId = product.id;
 
-        // Проверяем, есть ли товар уже в корзине
         const { data: existingItems, error: selectError } = await supabase
             .from('cart')
             .select('*')
@@ -40,7 +48,7 @@ export default function ProductDetail({ product, image, title, price, descriptio
         }
 
         if (existingItems.length > 0) {
-            // Товар уже есть — увеличиваем количество
+            setInCart(true)
             const existingItem = existingItems[0];
             const updatedQuantity = existingItem.count + 1;
 
@@ -100,8 +108,17 @@ export default function ProductDetail({ product, image, title, price, descriptio
                     </div>
                     <div className={styles.detail__block}>
                         <div className={styles.detail__sticky}>
-                            <div onClick={() => { addBasket(product) }} className={styles.detail__price}>
-                                {price} $
+                            <div
+                                onClick={() => { addBasket(product) }}
+                                className={`${styles.detail__price} ${inCart ? `${styles.detail__count}` : ''}`}
+                            >
+                                {
+                                    priceLoading
+                                        ?
+                                        'loading...'
+                                        :
+                                        `${inCart ? `В корзине ${basketData[0].count}` : `${price} $`}`
+                                }
                             </div>
                             <div className={styles.detail__rating}>
                                 <div className={styles.detail__stars}>

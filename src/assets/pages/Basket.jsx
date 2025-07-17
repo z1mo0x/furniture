@@ -40,7 +40,6 @@ export default function Basket() {
     function calculateTotal(cartData) {
         const sum = cartData.reduce((acc, el) => acc + el.price * el.count, 0);
         setTotalPrice(Number(sum.toFixed(2)));
-        console.log(sum.toFixed(2));
     }
 
 

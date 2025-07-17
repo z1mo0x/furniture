@@ -9,10 +9,33 @@
     border-radius: 20px;
     border: 1px solid #000;
     transition: all .3s;
+    position: relative;
+}
+
+.basket__total {
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    background: rgb(247, 81, 92);
+    color: white;
+    border-radius: 20px 0 20px 0;
+    padding: 10px 15px;
+    transition: all .2s;
+    transform: translateX(0px);
+    opacity: 1;
+}
+
+.basket__nototal {
+    transform: translateX(50px);
+    opacity: 0;
 }
 
 .basket__item:hover {
     border-radius: 10px;
+}
+
+.basket__item:hover .basket__total {
+    border-radius: 20px 0 10px 0;
 }
 
 .basket__image {
@@ -90,10 +113,16 @@
 
 .basket__delete {
     padding: 10px 15px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    padding: 0;
 }
 
 .basket__delete:hover {
-    padding: 10px 15px;
+    padding: 0;
 }
 
 .basket__price {
@@ -148,4 +177,97 @@
     margin-top: 30px;
     font-size: 26px;
     font-weight: 700;
+}
+
+
+
+@media (max-width:1400px) {
+    .basket__title {
+        font-size: 18px;
+    }
+}
+
+@media (max-width:1199px) {
+    .basket__item {
+        font-size: 18px;
+        grid-template-columns: 150px 1fr 1fr 1fr 1fr 40px;
+        gap: 10px 30px;
+    }
+
+    .basket__count {
+        grid-column: 4;
+        grid-row: 1;
+    }
+
+    .basket__rating {
+        flex-direction: column;
+    }
+
+}
+
+@media (max-width:992px) {
+    .basket__item {
+        font-size: 18px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px 30px;
+    }
+
+    .basket__count {
+        grid-column: unset;
+        grid-row: unset;
+    }
+
+    .basket__actions {
+        position: absolute;
+        top: -1px;
+        right: -1px;
+    }
+
+
+    .basket__delete {
+        border-radius: 0 20px 0 0;
+    }
+
+    .basket__item:hover .basket__delete {
+        border-radius: 0 10px 0 0;
+    }
+
+}
+
+@media (max-width:577px) {
+    .basket__item {
+        grid-template-columns: repeat(1, 1fr);
+        border-radius: 0 20px 20px 20px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .basket__item:hover {
+        border-radius: 0 10px 10px 10px;
+    }
+
+    .basket__image {
+        width: 100%;
+    }
+
+    .basket__title {
+        text-align: center;
+    }
+
+    .basket__rating {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background: white;
+        padding: 10px 15px;
+    }
+
+    .basket__rating p {
+        display: none;
+    }
+
+    .cart__total {
+        font-size: 20px;
+    }
+
 }
